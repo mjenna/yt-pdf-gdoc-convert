@@ -1,4 +1,4 @@
-Project allows you to get youtube URL then get transcript and turn it into google doc or pdf
+Project allows you to input a youtube URL then get transcript (if available) and turn it into google doc or pdf
 
 pip install youtube-transcript-api
 pip install reportlab
@@ -9,3 +9,4 @@ pip install reportlab
 - cleaning -> fixes spacing issues, removes time stamps, correct format..
 - convert to pdf (finalize, debugging)
 - convert to google doc
+- cases with multiple yt videos at the same time
