@@ -1,1 +1,11 @@
 Project is to get youtube link then get transcript and turn it into google doc or pdf
+
+pip install youtube-transcript-api
+pip install reportlab
+
+
+## TODO
+- choose to create seperate file for cleaning? or do it within yt api file
+- cleaning -> fixes spacing issues, removes time stamps, correct format..
+- convert to pdf
+- convert to google doc
