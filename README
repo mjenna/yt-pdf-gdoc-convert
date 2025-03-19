@@ -10,3 +10,5 @@ pip install reportlab
 - convert to pdf (finalize, debugging)
 - convert to google doc
 - cases with multiple yt videos at the same time
+- options: click yes for time stamps, picking pdf or google doc (potentially google sheets)
+- finale-> website??
