@@ -11,4 +11,8 @@ pip install reportlab
 - convert to google doc
 - cases with multiple yt videos at the same time
 - options: click yes for time stamps, picking pdf or google doc (potentially google sheets)
+- intervals for paragprah (entire chunk, every 5 seconds)
 - finale-> website??
+
+testcases:
+https://www.youtube.com/watch?v=KYtKntEws_s&ab_channel=%EB%B0%94%EB%8B%A4%EB%A6%ACBadaLee 
