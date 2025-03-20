@@ -29,7 +29,7 @@ def cleaned(file_path):
         transcript_text = file.read()
     
     # Regular expression to match timestamps (e.g., 136.284: or 12.34:)
-    remove_brackets= re.sub(r"\[\(.*?\)\]", "", transcript_text)
+    remove_brackets= re.sub(r"\[.*?\]", "", transcript_text)
     cleaned_text = re.sub(r'\d{1,4}\.\d{1,3}:\s*', '', remove_brackets)
     
     return cleaned_text
