@@ -31,8 +31,8 @@ def cleaned(file_path):
     # Regular expression to match timestamps (e.g., 136.284: or 12.34:)
     remove_brackets= re.sub(r"\[.*?\]", "", transcript_text)
     cleaned_text = re.sub(r'\d{1,4}\.\d{1,3}:\s*', '', remove_brackets)
-    
-    return cleaned_text
+    paragraph_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+    return paragraph_text
 
 def save_to_file(text, output_file="cleaned.txt"):
     """Saves the cleaned text to a file."""
@@ -43,3 +43,26 @@ input_file = "transcript.txt"
 cleaned_text = cleaned(input_file)
 save_to_file(cleaned_text)
 create_pdf_from_file("cleaned.txt")
+
+
+# def cleaned(file_path, interval=5):
+#     """Reads a text file, removes timestamps and bracketed text, and formats it into paragraphs every N lines."""
+#     with open(file_path, "r", encoding="utf-8-sig", errors="replace") as file:
+#         transcript_text = file.read()
+    
+#     # Remove bracketed text (e.g., "[A little upset]")
+#     transcript_text = re.sub(r"\[.*?\]", "", transcript_text)
+    
+#     # Remove timestamps (e.g., "136.284:" or "12.34:")
+#     cleaned_text = re.sub(r'\d{1,4}\.\d{1,3}:\s*', '', transcript_text)
+
+#     # Split text into lines and remove empty ones
+#     lines = [line.strip() for line in cleaned_text.split("\n") if line.strip()]
+    
+#     # Group lines into paragraphs of specified interval
+#     paragraphs = [" ".join(lines[i:i+interval]) for i in range(0, len(lines), interval)]
+    
+#     # Join paragraphs with double newlines for readability
+#     formatted_text = "\n\n".join(paragraphs)
+    
+#     return formatted_text
