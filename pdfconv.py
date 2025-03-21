@@ -39,10 +39,11 @@ def save_to_file(text, output_file="cleaned.txt"):
     with open(output_file, "w", encoding="utf-8") as file:
         file.write(text)
 
-input_file = "transcript.txt"
-cleaned_text = cleaned(input_file)
-save_to_file(cleaned_text)
-create_pdf_from_file("cleaned.txt")
+if __name__ == "__main__":
+    input_file = "transcript.txt"
+    cleaned_text = cleaned(input_file)
+    save_to_file(cleaned_text)
+    create_pdf_from_file("cleaned.txt")
 
 
 # def cleaned(file_path, interval=5):

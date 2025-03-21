@@ -23,4 +23,11 @@ with open("transcript.txt", "w") as file:
         file.write(f"{entry['start']}: {entry['text']}\n")
 
 video_url = input("Paste URL of the YouTube video: ").strip()
+yes_stamp = input("Include timestamps? (yes/no): ").strip().lower()
+
+if yes_stamp in ["yes", "y"]:
+    video_url = input("Paste the URL of the YouTube video: ").strip()
+    print(f"You entered: {video_url}")
+else:
+    print("No URL provided. Exiting...")
 
