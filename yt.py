@@ -6,16 +6,17 @@ video_urls = input("Paste URLs of the YT videos (separated by commas if multiple
 
 with open("transcript.txt", "w") as file:
     for index, video_url in enumerate(video_urls, 1): #process each video URL
-        video_url = video_url.strip()  #removes any white space
+        video_url = video_url.strip()  #remove any white space
         try:
             video_id = video_url.split("v=")[1].split("&")[0] #extract video ID from the URL
             transcript = YouTubeTranscriptApi.get_transcript(video_id) #grab the transcript for the current video ID
             file.write(f"Transcript for Video {index}\n")  #transcript for video into file: labeling as Video 1, Video 2...
+            file.write("="*50 + "\n")
             
             for entry in transcript:
                 file.write(f"{entry['start']}: {entry['text']}\n")
             
-            file.write("\n")  #add a blank line after each transcript
+            file.write("\n\n" + "="*50 + "\n\n")  #separator between video transcripts (=======)
 
             print(f"Transcript for Video {index} added to transcript.txt")
 
