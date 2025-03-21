@@ -1,29 +1,26 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 import sys
 
+#handling multiple URLs
+video_urls = input("Paste URLs of the YT videos (separated by commas if multiple): ").strip().split(",")
 
-#handling multiple URLS
-video_urls = input("Paste URLs of the YT video (separated by commas if multiple): ").strip().split(",")
-
-#video_url = input("Paste URL of the YouTube video: ").strip()
-
-#extracts video id
-#video_id = video_url.split("v=")[1].split("&")[0]
-for video_url in video_urls:
-    video_url = video_url.strip() #remove any white space
-    video_id = video_url.split("v=")[1].split("&")[0] #extract video id
-
-try:
-    transcript = YouTubeTranscriptApi.get_transcript(video_id)
-except Exception as e:
-    print(f"Cannot get the transcript: {e}")
-    sys.exit(1)
-
-#print transcripts into text files
-transcript_filename = f"transcript_{video_id}.txt"
 with open("transcript.txt", "w") as file:
-    for entry in transcript:
-        file.write(f"{entry['start']}: {entry['text']}\n")
+    for index, video_url in enumerate(video_urls, 1): #process each video URL
+        video_url = video_url.strip()  #removes any white space
+        try:
+            video_id = video_url.split("v=")[1].split("&")[0] #extract video ID from the URL
+            transcript = YouTubeTranscriptApi.get_transcript(video_id) #grab the transcript for the current video ID
+            file.write(f"Transcript for Video {index}\n")  #transcript for video into file: labeling as Video 1, Video 2...
+            
+            for entry in transcript:
+                file.write(f"{entry['start']}: {entry['text']}\n")
+            
+            file.write("\n")  #add a blank line after each transcript
 
+            print(f"Transcript for Video {index} added to transcript.txt")
 
+        except Exception as e:
+            file.write(f"Cannot get the transcript for {video_url}: {e}\n\n")
+            print(f"Cannot get the transcript for {video_url}: {e}")
 
+print("All transcripts have been saved in transcript.txt")

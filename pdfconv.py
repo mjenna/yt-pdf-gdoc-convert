@@ -3,7 +3,7 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 import re
-import yt.py
+import yt
 
 def create_pdf_from_file(filename):
     #read transcript text from file
@@ -28,8 +28,7 @@ def cleaned(file_path):
     """Reads a text file, removes timestamps, and returns cleaned text."""
     with open(file_path, "r", encoding="utf-8-sig", errors="replace") as file:
         transcript_text = file.read()
-    
-    # Regular expression to match timestamps (e.g., 136.284: or 12.34:)
+        
     remove_brackets= re.sub(r"\[.*?\]", "", transcript_text)
     cleaned_text = re.sub(r'\d{1,4}\.\d{1,3}:\s*', '', remove_brackets)
     paragraph_text = re.sub(r'\s+', ' ', cleaned_text).strip()
