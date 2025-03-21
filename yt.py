@@ -25,6 +25,5 @@ with open("transcript.txt", "w") as file:
     for entry in transcript:
         file.write(f"{entry['start']}: {entry['text']}\n")
 
-print("transcript for [video url] has been inserted into [transcript_filename].txt file")
 
 

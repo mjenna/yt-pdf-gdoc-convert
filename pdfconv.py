@@ -3,6 +3,7 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 import re
+import yt.py
 
 def create_pdf_from_file(filename):
     #read transcript text from file
@@ -32,7 +33,11 @@ def cleaned(file_path):
     remove_brackets= re.sub(r"\[.*?\]", "", transcript_text)
     cleaned_text = re.sub(r'\d{1,4}\.\d{1,3}:\s*', '', remove_brackets)
     paragraph_text = re.sub(r'\s+', ' ', cleaned_text).strip()
-    return paragraph_text
+    hyphen_clean =  re.sub(r"\s-\s", " ", paragraph_text)
+    # words = hyphen_clean.split()
+    # chunk_size = 150  # Approximate words per 10 lines (adjust as needed)
+    # formatted_text = "\n\t".join([" ".join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)])
+    return hyphen_clean
 
 def save_to_file(text, output_file="cleaned.txt"):
     """Saves the cleaned text to a file."""
